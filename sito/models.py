@@ -129,7 +129,7 @@ class Impianto(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     lon = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     nome_installazione = models.CharField(max_length=256, blank=True, null=True, help_text=u"Eventuale nome dell'impianto installato")
-    data_installazione = models.DateField()
+    data_installazione = models.DateField(blank=True, null=True)
     resa_specifica = models.CharField(max_length=256, help_text=u'KWp (KW picco)')
     immagine = models.ImageField(upload_to='uploads/impianti/', blank=True, null=True)
     data_creazione = models.DateTimeField(auto_now_add=True)
