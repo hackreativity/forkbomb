@@ -10,12 +10,28 @@
 #livemap {
     margin-top: 150px;
 }
+
+#potenza h2 {
+    font-size: 35px;
+}
+
+#potenza p {
+    font-size: 30px;
+}
+
+.leaflet-popup-content p {
+    margin: 2px 0;
+}
 </style>
 
 <section id="livemap">
     <div class="container">
         <div class="row">
-             <div id="map"></div>
+            <div id="potenza">
+                <h2>Potenza totale generata</h2>
+                <p>{{ potenza_totale }} KWp</p>
+            </div>
+            <div id="map"></div>
         </div>          
     </div>  
 </section>
@@ -36,7 +52,7 @@
     {% endfor %}
     window.impianti = {{impianti_json|safe}};
 
-    window.map = L.map('map').setView([43.33316939281735, 13.364868164062502], 9);
+    window.map = L.map('map').setView([43.33316939281735, 13.364868164062502], 6);
     L.tileLayer(
         'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
         {
@@ -46,7 +62,18 @@
 
     $.each(impianti, function(i, e){
         console.log(e);
-        L.marker([e.lat, e.lon], {icon: tipologie[e.prodotto__tipologia__nome]}).addTo(map);
+        var marker = L.marker(
+            [e.lat, e.lon], 
+            {
+                icon: tipologie[e.prodotto__tipologia__nome]
+            }
+        );
+        var popup_content = '<b>'+e.prodotto__nome+'</b><p>'+e.prodotto__tipologia__nome+'</p><p>'+e.resa_specifica+' KWp</p>';
+        if(e.immagine != "") {
+            popup_content += '<img style="width:200px;" src="/files/'+e.immagine+'">';
+        }
+        marker.bindPopup(popup_content);
+        marker.addTo(map);
     });
 </script>
 
