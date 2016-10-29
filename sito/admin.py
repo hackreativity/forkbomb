@@ -22,6 +22,12 @@ class TipologiaAdmin(admin.ModelAdmin):
     list_display = ('nome', )
     search_fields = ('nome',)
 
+@admin.register(Prodotto)
+class ProdottoAdmin(admin.ModelAdmin):
+
+    list_display = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'resa' ,'costo' ,'ciclo_vita')
+    search_fields = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'resa' ,'costo' ,'ciclo_vita', 'caratteristiche' ,)
+
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
 
