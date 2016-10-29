@@ -132,6 +132,7 @@ class Impianto(models.Model):
     data_installazione = models.DateField(blank=True, null=True)
     resa_specifica = models.CharField(max_length=256, help_text=u'KWp (KW picco)')
     immagine = models.ImageField(upload_to='uploads/impianti/', blank=True, null=True)
+    pubblicato = models.BooleanField(default=True)
     data_creazione = models.DateTimeField(auto_now_add=True)
     ultima_modifica = models.DateTimeField(auto_now=True)
 
