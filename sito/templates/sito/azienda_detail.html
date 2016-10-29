@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ object.ragione_sociale }}</h1>
+<p>Indirizzo: {{ object.indirizzo }}</p>
+<p>Citta: {{ object.citta }}</p>
+<p>Logo: {{ object.logo }}</p>
+<p>Telefono: {{ object.telefono }}</p>
+<p>Email: {{ object.email }}</p>
+<p>Sito: {{ object.sito }}</p>
+<p>Url_facebook: {{ object.url_facebook }}</p>
+<p>Partita_iva: {{ object.partita_iva }}</p>
+
+{% endblock %}
