@@ -31,3 +31,9 @@ class AziendaUpdate(UpdateView):
 
 class AziendaDetailView(DetailView):
     model = Azienda
+
+def livemap(request):
+
+    return render(request, 'livemap.html', {
+        'impianti': Impianto.objects.filter(pubblicato=True)
+    })

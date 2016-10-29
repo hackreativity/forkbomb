@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="/static/sito/css/owl.carousel.css">
         <link rel="stylesheet" href="/static/sito/css/responsive.css">
         <link rel="stylesheet" href="/static/sito/css/style.css">
+        <link rel="stylesheet" href="/static/sito/css/leaflet.css" />
 
     </head>
     <body>
@@ -125,6 +126,7 @@
 <script src="/static/sito/js/jquery.easing.min.js"></script>
 <script src="/static/sito/js/scrolling-nav.js"></script>
 <script src="/static/sito/js/plugins.js"></script>
+<script src="/static/sito/js/leaflet.js"></script>
 <!-- Google Map js -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
@@ -197,7 +199,8 @@ $(window).load(function(){
 });
 </script>
 
-
+{% block bottom_script %}
+{% endblock %}
 
 </body>
 </html>

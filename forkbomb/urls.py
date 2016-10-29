@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'azienda/register/$', AziendaCreate.as_view(), name='azienda-create'),
     url(r'azienda/update/(?P<pk>[0-9]+)/$', AziendaUpdate.as_view(), name='azienda-update'),
     url(r'azienda/profile/(?P<pk>[0-9]+)/$', AziendaDetailView.as_view(), name='azienda'),
+    url(r'livemap/?$', livemap, name="livemap" )
 ]
