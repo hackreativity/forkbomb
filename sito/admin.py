@@ -25,8 +25,8 @@ class TipologiaAdmin(admin.ModelAdmin):
 @admin.register(Prodotto)
 class ProdottoAdmin(admin.ModelAdmin):
 
-    list_display = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'resa' ,'costo' ,'ciclo_vita')
-    search_fields = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'resa' ,'costo' ,'ciclo_vita', 'caratteristiche' ,)
+    list_display = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'potenza' ,'costo' ,'ciclo_vita')
+    search_fields = ('nome' ,'azienda' ,'tipologia' ,'ingombro' ,'efficienza' ,'potenza' ,'costo' ,'ciclo_vita', 'caratteristiche' ,)
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):

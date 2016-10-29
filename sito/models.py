@@ -72,7 +72,7 @@ class Prodotto(models.Model):
     tipologia = models.ForeignKey(Tipologia)
     ingombro = models.CharField(max_length=64, verbose_name=u"Dimensione")
     efficienza = models.IntegerField(help_text=u'percentuale', blank=True, null=True)
-    resa = models.DecimalField(max_digits=6, decimal_places=2, help_text=u'KWp')
+    potenza = models.DecimalField(max_digits=6, decimal_places=2, help_text=u'in Watt')
     costo = models.DecimalField(max_digits=9, decimal_places=2, help_text=u'in Euro €', null=True, blank=True)
     ciclo_vita = models.IntegerField(help_text=u'Durata di vita del prodotto in mesi', null=True, blank=True) # mesi
     immagine = models.ImageField(upload_to='uploads/prodotti/', blank=True, null=True)
