@@ -1,0 +1,5 @@
+Django
+Pillow
+ipython
+django-extensions
+MySQL-python
