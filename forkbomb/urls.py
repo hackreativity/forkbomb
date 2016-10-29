@@ -17,6 +17,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+
 from sito.views import *
 
 urlpatterns = [
@@ -27,4 +30,4 @@ urlpatterns = [
     url(r'azienda/update/(?P<pk>[0-9]+)/$', AziendaUpdate.as_view(), name='azienda-update'),
     url(r'azienda/profile/(?P<pk>[0-9]+)/$', AziendaDetailView.as_view(), name='azienda'),
     url(r'livemap/?$', livemap, name="livemap" )
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

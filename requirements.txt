@@ -2,3 +2,5 @@ Django
 Pillow
 ipython
 django-extensions
+simplejson
+geopy

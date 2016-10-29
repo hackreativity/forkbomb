@@ -4,8 +4,12 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.urls import reverse
-
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
+from geopy.geocoders import Nominatim
+
 
 class Azienda(models.Model):
 
@@ -141,3 +145,21 @@ class Impianto(models.Model):
             return self.nome_installazione
         else:
             return self.prodotto.nome +  ' - ' + self.citta
+
+
+
+@receiver(pre_save, sender=Azienda)
+@receiver(pre_save, sender=Cliente)
+@receiver(pre_save, sender=Impianto)
+def geolocate(sender, instance, *args, **kwargs):
+    
+    if not instance.lat and not instance.lon:
+
+        geolocator = Nominatim(format_string='%s, Italy', view_box=('6', '48', '19', '36'), country_bias='it')
+        address = instance.citta
+        #if instance.indirizzo:
+        #    address = instance.indirizzo + ', ' + address
+        coords = geolocator.geocode(address)
+        if coords:
+            instance.lat = coords.latitude
+            instance.lon = coords.longitude
