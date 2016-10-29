@@ -6,8 +6,9 @@ from sito.models import *
 @admin.register(Azienda)
 class AziendaAdmin(admin.ModelAdmin):
 
-    list_display = ('ragione_sociale', 'citta', 'email', 'sito', 'data_creazione')
+    list_display = ('ragione_sociale', 'citta', 'email', 'sito', 'data_creazione', 'lat', 'lon' )
     search_fields = ('ragione_sociale', 'indirizzo', 'telefono', 'email', 'sito', 'url_facebook', 'partita_iva')
+    list_editable = ('citta',)
     list_filter = ('citta', )
 
 @admin.register(Caratteristica)
@@ -40,5 +41,6 @@ class ClienteAdmin(admin.ModelAdmin):
 @admin.register(Impianto)
 class ImpiantoAdmin(admin.ModelAdmin):
 
-    list_display = ('__unicode__', 'prodotto', 'citta', 'nome_installazione', 'resa_specifica' )
+    list_display = ('__unicode__', 'prodotto', 'citta', 'nome_installazione', 'resa_specifica', 'lat', 'lon' )
     search_fields = ('cliente', 'prodotto', 'indirizzo', 'citta', 'nome_installazione', 'data_installazione', 'resa_specifica', 'caratteristiche', )
+    list_editable = ('citta',)

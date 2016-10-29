@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from sito.models import *
 from sito.forms import *
 
+import simplejson as json
+
 def index(request):
     return render(request, 'index.html', {})
 
@@ -34,6 +36,13 @@ class AziendaDetailView(DetailView):
 
 def livemap(request):
 
+    impianti = Impianto.objects.filter(pubblicato=True)
+    impianti_json = json.dumps(
+        list(impianti.values('id', 'cliente', 'prodotto', 'indirizzo', 'citta', 'lat', 'lon', 'resa_specifica', 'immagine', 'prodotto__tipologia__nome'))
+    )
+    tipologie = Tipologia.objects.all()
     return render(request, 'livemap.html', {
-        'impianti': Impianto.objects.filter(pubblicato=True)
+        'impianti': impianti,
+        'impianti_json': impianti_json,
+        'tipologie': tipologie,
     })
