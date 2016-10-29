@@ -22,5 +22,8 @@ from sito.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
-    
+
+    url(r'azienda/register/$', AziendaCreate.as_view(), name='azienda-create'),
+    url(r'azienda/(?P<pk>[0-9]+)/$', AziendaUpdate.as_view(), name='azienda-update'),
+
 ]

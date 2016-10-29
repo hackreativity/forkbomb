@@ -28,6 +28,9 @@ class Azienda(models.Model):
     data_creazione = models.DateTimeField(auto_now_add=True)
     ultima_modifica = models.DateTimeField(auto_now=True)
 
+    def get_absolute_url(self):
+        return reverse('azienda', kwargs={'pk': self.pk})
+
     def __unicode__(self):
         return self.ragione_sociale
 
@@ -70,7 +73,7 @@ class Prodotto(models.Model):
     nome = models.CharField(max_length=64, unique=True)
     azienda = models.ForeignKey(Azienda)
     tipologia = models.ForeignKey(Tipologia)
-    ingombro = models.CharField(max_length=64, verbose_name=u"Dimensione")
+    ingombro = models.CharField(max_length=64, verbose_name=u"Dimensione", null=True, blank=True)
     efficienza = models.IntegerField(help_text=u'percentuale', blank=True, null=True)
     potenza = models.DecimalField(max_digits=6, decimal_places=2, help_text=u'in Watt')
     costo = models.DecimalField(max_digits=9, decimal_places=2, help_text=u'in Euro €', null=True, blank=True)
