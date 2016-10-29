@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<style>
+.img-responsive {
+    object-fit: cover;
+}
+</style>
+
 <!-- start slider Section -->
 <section id="slider_sec">
     <div class="container">
@@ -144,85 +151,27 @@
             </div>      
             <div class="col-lg-12">
                 <div class="portfolio-filter text-uppercase text-center">
-                <ul class="filter">
-                <li class="active" data-filter="*">All</li>
-                <li data-filter=".web-design">Web Design</li>
-                <li data-filter=".graphic">Graphic</li>
-                <li data-filter=".photography">Photography</li>
-                <li data-filter=".motion-video">Motion video</li>
-                </ul>
+                    <ul class="filter">
+                        <li class="active" data-filter="*">All</li>
+                        {% for t in tipologie %}
+                            <li data-filter=".{{ t.nome|slugify }}">{{ t.nome }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                  
                 <div class="all-portfolios">
+                    {% for p in prodotti %}
                     <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_06.jpg" alt="">
-                    </div>              
-                    </div>              
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_01.jpg" alt="">
-                    </div>              
-                    </div>                  
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_02.jpg" alt="">
-                    </div>              
-                    </div>                  
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio graphic">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_03.jpg" alt="">
-                    </div>              
-                    </div>                  
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_04.jpg" alt="">
-                    </div>              
-                    </div>                  
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio photography">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_05.jpg" alt="">
-                    </div>              
-                    </div>              
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_07.jpg" alt="">
-                    </div>              
-                    </div>              
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_08.jpg" alt="">
-                    </div>              
-                    </div>              
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio photography">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_08.jpg" alt="">
-                    </div>              
-                    </div>              
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_08.jpg" alt="">
-                    </div>              
-                    </div>                  
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio web-design">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_09.jpg" alt="">
-                    </div>              
-                    </div>          
-                    <div class="col-sm-12  col-lg-12 col-md-12 col-xs-12 ">
-                    <div class="single-portfolio photography">
-                    <img class="img-responsive" src="http://showwp.com/demos/porton/default/upload/p_08.jpg" alt="">
-                    </div>              
-                    </div>
+                        <div class="single-portfolio {{ p.tipologia|slugify }}" style="background-image: url('/files/{{ p.immagine }}'); background-size: cover; height: 220px;">
+                            <!-- <img class="img-responsive" src="/files/{{ p.immagine }}" alt=""> -->
+                        </div>              
+                    </div>       
+                    {% endfor %}
                 </div>
 
 
             </div>
-                <div class="post_btn">
-                    <div class="hover_effect_btn" id="hover_effect_btn">
-                        <a href="#hover_effect_btn" data-hover="view more post"><span>view more post</span></a>
-                    </div>
-                </div>  
+                
             </div>          
         </div>
 </section>
@@ -245,17 +194,17 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs12">
                 <div class="all_team">
                     <div class="sngl_team">                     
-                        <img src="http://wedesignthemes.com/themes/dt-mountcool/wp-content/uploads/2015/10/img-1.png" alt=""/>  
+                        <img src="/static/sito/img/alessandro.jpg" alt=""/>  
                         <h3> Alessandro Santoni </h3>
                         <span> CEO </span>
                     </div>                  
                     <div class="sngl_team">                     
-                        <img src="http://wedesignthemes.com/themes/dt-mountcool/wp-content/uploads/2015/10/img-2.png" alt=""/>  
+                        <img src="/static/sito/img/riccardo.png" alt=""/>  
                         <h3> Riccardo Serafini </h3>
                         <span> CTO </span>
                     </div>              
                     <div class="sngl_team">                     
-                        <img src="http://wedesignthemes.com/themes/dt-mountcool/wp-content/uploads/2015/10/img-3.png" alt=""/>  
+                        <img src="/static/sito/img/filippo.jpg" alt=""/>  
                         <h3> Filippo Serafini </h3>
                         <span> COO </span>
                     </div>                                                  

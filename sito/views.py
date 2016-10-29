@@ -12,7 +12,14 @@ from sito.forms import *
 import simplejson as json
 
 def index(request):
-    return render(request, 'index.html', {})
+
+    tipologie = Tipologia.objects.all()
+    prodotti = Prodotto.objects.all()
+
+    return render(request, 'index.html', {
+        'tipologie': tipologie,
+        'prodotti': prodotti,
+    })
 
 class AziendaCreate(CreateView):
     model = Azienda
