@@ -120,7 +120,7 @@ class Impianto(models.Model):
         verbose_name = "Impianto"
         verbose_name_plural = "Impianti"
     
-    cliente = models.ForeignKey(Cliente)
+    cliente = models.ForeignKey(Cliente, null=True, blank=True)
     prodotto = models.ForeignKey(Prodotto)
     indirizzo = models.CharField(max_length=256)
     citta = models.CharField(max_length=256)
