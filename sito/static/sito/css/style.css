@@ -182,8 +182,6 @@ margin : 0;
 }
 .lft_hd img {
 float : left;
-margin-right : 30px;
-margin-top : 19px;
 width : 76px;
 }
 #pricing_sec {
@@ -336,7 +334,7 @@ display : block;
 height : 90px;
 }
 .wrap_caption {
-padding : 190px 0;
+padding : 205px 0;
 }
 .slider {
 display : block;
@@ -725,7 +723,7 @@ width : 100px;
 display : none;
 }
 #ctn_sec {
-padding : 70px 0;
+padding : 40px 0;
 }
 #cnt_form .btn {
 background : #353638;
@@ -799,7 +797,7 @@ font-weight : normal;
 text-transform : uppercase;
 }
 #ft_sec {
-padding : 70px 0;
+padding : 40px 0;
 }
 .copy_right {
 margin : 0;
