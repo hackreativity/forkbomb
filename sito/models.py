@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.urls import reverse
 
 from django.contrib.auth.models import User
 
@@ -24,7 +25,6 @@ class Azienda(models.Model):
     sito = models.URLField(blank=True, null=True)
     url_facebook = models.URLField(blank=True, null=True)
     partita_iva = models.CharField(max_length=64)
-    tos = models.BooleanField()
     data_creazione = models.DateTimeField(auto_now_add=True)
     ultima_modifica = models.DateTimeField(auto_now=True)
 
@@ -106,7 +106,6 @@ class Cliente(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     lon = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     fabbisogno_energetico = models.IntegerField(help_text=u'KWh per mq per anno')
-    tos = models.BooleanField()
     data_creazione = models.DateTimeField(auto_now_add=True)
     ultima_modifica = models.DateTimeField(auto_now=True)
 
@@ -125,7 +124,7 @@ class Impianto(models.Model):
     
     cliente = models.ForeignKey(Cliente, null=True, blank=True)
     prodotto = models.ForeignKey(Prodotto)
-    indirizzo = models.CharField(max_length=256)
+    indirizzo = models.CharField(max_length=256, null=True, blank=True)
     citta = models.CharField(max_length=256)
     lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     lon = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
@@ -133,7 +132,6 @@ class Impianto(models.Model):
     data_installazione = models.DateField()
     resa_specifica = models.CharField(max_length=256, help_text=u'KWp (KW picco)')
     immagine = models.ImageField(upload_to='uploads/impianti/', blank=True, null=True)
-    caratteristiche = models.ManyToManyField(Caratteristica)
     data_creazione = models.DateTimeField(auto_now_add=True)
     ultima_modifica = models.DateTimeField(auto_now=True)
 
