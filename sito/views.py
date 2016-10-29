@@ -15,10 +15,12 @@ def index(request):
 
     tipologie = Tipologia.objects.all()
     prodotti = Prodotto.objects.all()
+    impianti_count = Impianto.objects.count()
 
     return render(request, 'index.html', {
         'tipologie': tipologie,
         'prodotti': prodotti,
+        'impianti_count': impianti_count,
     })
 
 class AziendaCreate(CreateView):
