@@ -54,14 +54,13 @@
 
     window.map = L.map('map').setView([43.33316939281735, 13.364868164062502], 6);
     L.tileLayer(
-        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
         {
             maxZoom: 19
         }
     ).addTo(map);
 
     $.each(impianti, function(i, e){
-        console.log(e);
         var marker = L.marker(
             [e.lat, e.lon], 
             {
