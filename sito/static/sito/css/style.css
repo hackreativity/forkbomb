@@ -368,13 +368,13 @@ font-weight : normal;
 }
 .caption_carousel h1 {
 font-family : lato;
-font-size : 90px;
+font-size : 80px;
 text-transform : capitalize;
 color : #fff;
 }
 .caption_carousel p {
 font-family : lato;
-font-size : 34px;
+font-size : 28px;
 margin-top: 5px;
 color : #f6f6f6;
 border-top : 1px solid #fff;
