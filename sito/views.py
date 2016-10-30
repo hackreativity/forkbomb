@@ -64,6 +64,9 @@ def livemap(request):
         'potenza_totale': potenza_totale,
     })
 
+def underconstruction(request):
+    return render(request, 'login.html', {})
+
 def prodotti(request):
 
     aziende = Azienda.objects.all()

@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+<section id="tm_sec">                                                       
+    <div class="container"  style="padding-left: 200px; padding-top: 25px">
+        <div class="title">
+            <t1>COMPILA IL FORM E INSCRIVI LA TUA AZIENDA</t1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs12 " style="padding-top: 25px">
+                <form action="" method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Registrati"/>
+                </form>
+            </div>
+        </div>
+    </div>                                                                  
+</section>
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Registrati" />
-</form>
 
 {% endblock %}
