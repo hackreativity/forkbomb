@@ -63,3 +63,7 @@ def livemap(request):
         'tipologie': tipologie,
         'potenza_totale': potenza_totale,
     })
+
+
+def underconstruction(request):
+    return render(request, 'login.html', {})

@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h1>{{ object.ragione_sociale }}</h1>
-<p>Indirizzo: {{ object.indirizzo }}</p>
-<p>Citta: {{ object.citta }}</p>
-<p>Logo: {{ object.logo }}</p>
-<p>Telefono: {{ object.telefono }}</p>
-<p>Email: {{ object.email }}</p>
-<p>Sito: {{ object.sito }}</p>
-<p>Url_facebook: {{ object.url_facebook }}</p>
-<p>Partita_iva: {{ object.partita_iva }}</p>
-
+<section id="tm_sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs12 ">
+                <h1>{{ object.ragione_sociale }}</h1>
+                <p>Indirizzo: {{ object.indirizzo }}</p>
+                <p>Citta: {{ object.citta }}</p>
+                <p>Logo: {{ object.logo }}</p>
+                <p>Telefono: {{ object.telefono }}</p>
+                <p>Email: {{ object.email }}</p>
+                <p>Sito: {{ object.sito }}</p>
+                <p>Url_facebook: {{ object.url_facebook }}</p>
+                <p>Partita_iva: {{ object.partita_iva }}</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
