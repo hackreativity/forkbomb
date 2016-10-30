@@ -45,7 +45,7 @@ class AziendaDetailView(DetailView):
 
 def livemap(request):
 
-    impianti = Impianto.objects.filter(pubblicato=True)
+    impianti = Impianto.objects.filter(pubblicato=True, lat__isnull=False, lon__isnull=False)
     impianti_json = json.dumps(
         list(impianti.values('id', 'cliente', 'prodotto__nome', 'indirizzo', 'citta', 'lat', 'lon', 'resa_specifica', 'immagine', 'prodotto__tipologia__nome'))
     )
