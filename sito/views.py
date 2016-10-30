@@ -63,3 +63,14 @@ def livemap(request):
         'tipologie': tipologie,
         'potenza_totale': potenza_totale,
     })
+
+def prodotti(request):
+
+    aziende = Azienda.objects.all()
+    tipologie = Tipologia.objects.all()
+
+    return render(request, 'prodotti.html', {
+        'aziende': aziende,
+        'tipologie': tipologie,
+    })    
+

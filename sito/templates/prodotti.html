@@ -1,0 +1,415 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+#crea-impianto {
+    margin-top: 150px;
+}
+
+.prodotto {
+    width: auto;
+    float: left;
+    margin-right: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.prodotto:hover {
+    background-color: #d9d9ff;
+}
+
+.selezionato {
+    background-color: #6c6cff;
+}
+
+.azienda-nome {
+    font-size: 35px;
+}
+
+.azienda {
+    background-color: #d0d0d0;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#titolo h1 {
+    font-size: 45px;
+}
+#titolo h2 {
+    font-size: 35px;
+}
+
+#risultato {
+    margin-top: 30px;
+}
+
+#risultato p {
+    font-size: 35px;
+}
+
+</style>
+
+<section id="crea-impianto">
+    <div class="container">
+        <div class="row" id="titolo"> 
+            <h1>In questa pagina puoi sfogliare il catalogo di tutte le aziende</h1>
+            <h2>Seleziona i prodotti per configurare e simulare il tuo impianto</h2>
+        </div>
+        <div id="prodotti">
+            {% for azienda in aziende %}
+            <div class="row" style="margin-top: 50px;">
+                <div class="azienda">
+                    {% if azienda.logo %}
+                        <p><img style="height: 50px;" src="{{ azienda.logo.url }}"></p>
+                    {% endif %}
+                    <h1 class="azienda-nome">{{ azienda.ragione_sociale }}</h1>
+                    <p>{% if azienda.indirizzo %}{{ azienda.indirizzo }}{% endif %} - {{azienda.citta}}</p>
+                    <p><a href="{{azienda.sito}}">{{azienda.sito}}</a></p>
+                </div>
+                {% for p in azienda.prodotto_set.all %}
+                    <div class="prodotto" data-resa="{{ p.potenza }}">
+                        <h2>{{ p.nome }}</h2>
+                        <i>{{ p.tipologia.nome }}</i>
+                        {% if p.immagine %}
+                            <p><img style="width: 150px; max-height: 400px;" src="{{ p.immagine.url }}"></p>
+                        {% endif %}
+                        {% if p.ingombro %}
+                            <p><b>Ingombro</b>: <i>{{p.ingombro}}</i></p>
+                        {% endif %}
+                        {% if p.efficienza %}
+                            <p><b>Efficienza</b>: <i>{{p.efficienza}}%</i></p>
+                        {% endif %}
+                        {% if p.potenza %}
+                            <p><b>Potenza</b>: <i>{{p.potenza}} W</i></p>
+                        {% endif %}
+                        {% if p.costo %}
+                            <p><b>Costo</b>: <i>{{p.costo}} €</i></p>
+                        {% endif %}
+                        {% if p.ciclo_vita %}
+                            <p><b>Ciclo di vita</b>: <i>{{p.ciclo_vita}} mesi</i></p>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+            </div>          
+            {% endfor %}
+        </div>
+</section>
+
+<hr>
+<section id="">
+    <div class="container">
+        <div class="row">
+            <h1>Crea il tuo impianto</h1>
+        </div>
+        <div class="row">
+            <h2>Potenza rinnovabile selezionata:</h2>
+            <div id="potenza-totale"></div>
+        </div>          
+        <div class="row">
+            <h2>Indica la tua provincia</h2>
+        </div>
+        <div class="row">
+            <select id="provincia">
+                <option>Agrigento</option>
+                <option>Alessandria</option>
+                <option>Ancona</option>
+                <option>Andria</option>
+                <option>Aosta</option>
+                <option>Arezzo</option>
+                <option>Ascoli Piceno</option>
+                <option>Asti</option>
+                <option>Avellino</option>
+                <option>Bari</option>
+                <option>Barletta</option>
+                <option>Belluno</option>
+                <option>Benevento</option>
+                <option>Bergamo</option>
+                <option>Biella</option>
+                <option>Bologna</option>
+                <option>Bolzano</option>
+                <option>Brescia</option>
+                <option>Brindisi</option>
+                <option>Cagliari</option>
+                <option>Caltanissetta</option>
+                <option>Campobasso</option>
+                <option>Carbonia</option>
+                <option>Caserta</option>
+                <option>Catania</option>
+                <option>Catanzaro</option>
+                <option>Chieti</option>
+                <option>Como</option>
+                <option>Cosenza</option>
+                <option>Cremona</option>
+                <option>Crotone</option>
+                <option>Cuneo</option>
+                <option>Enna</option>
+                <option>Fermo</option>
+                <option>Ferrara</option>
+                <option>Firenze</option>
+                <option>Foggia</option>
+                <option>Forlì</option>
+                <option>Frosinone</option>
+                <option>Genova</option>
+                <option>Gorizia</option>
+                <option>Grosseto</option>
+                <option>Iglesias</option>
+                <option>Imperia</option>
+                <option>Isernia</option>
+                <option>L'Aquila</option>
+                <option>La Spezia</option>
+                <option>Lanusei</option>
+                <option>Latina</option>
+                <option>Lecce</option>
+                <option>Lecco</option>
+                <option>Livorno</option>
+                <option>Lodi</option>
+                <option>Lucca</option>
+                <option>Macerata</option>
+                <option>Mantova</option>
+                <option>Massa</option>
+                <option>Matera</option>
+                <option>Messina</option>
+                <option>Milano</option>
+                <option>Modena</option>
+                <option>Monza</option>
+                <option>Napoli</option>
+                <option>Novara</option>
+                <option>Nuoro</option>
+                <option>Olbia</option>
+                <option>Oristano</option>
+                <option>Padova</option>
+                <option>Palermo</option>
+                <option>Parma</option>
+                <option>Pavia</option>
+                <option>Perugia</option>
+                <option>Pesaro</option>
+                <option>Pescara</option>
+                <option>Piacenza</option>
+                <option>Pisa</option>
+                <option>Pistoia</option>
+                <option>Pordenone</option>
+                <option>Potenza</option>
+                <option>Prato</option>
+                <option>Ragusa</option>
+                <option>Ravenna</option>
+                <option>Reggio di Calabria</option>
+                <option>Reggio nell'Emilia</option>
+                <option>Rieti</option>
+                <option>Rimini</option>
+                <option>Roma</option>
+                <option>Rovigo</option>
+                <option>Salerno</option>
+                <option>Sanluri</option>
+                <option>Sassari</option>
+                <option>Savona</option>
+                <option>Siena</option>
+                <option>Siracusa</option>
+                <option>Sondrio</option>
+                <option>Taranto</option>
+                <option>Tempio Pausania</option>
+                <option>Teramo</option>
+                <option>Terni</option>
+                <option>Torino</option>
+                <option>Tortolì</option>
+                <option>Trani</option>
+                <option>Trapani</option>
+                <option>Trento</option>
+                <option>Treviso</option>
+                <option>Trieste</option>
+                <option>Udine</option>
+                <option>Varese</option>
+                <option>Venezia</option>
+                <option>Verbania</option>
+                <option>Vercelli</option>
+                <option>Verona</option>
+                <option>Vibo Valentia</option>
+                <option>Vicenza</option>
+                <option>Villacidro</option>
+                <option>Viterbo</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            <div>Consumo annuale pro-capite:</div>
+            <div id="consumo-annuo-provincia"></div>
+        </div>
+        <div class="row">
+            <h2>Quante persone ci sono nella tua abitazione?</h2>
+        </div>
+        <div class="row">
+            <input id="persone" type="number" min="1">
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <button class="btn" id="calcola">CALCOLA</button>
+        </div>
+        <div id="risultato">
+        </div>
+    </div>  
+</section>
+
+
+{% endblock %}
+
+{% block bottom_script %}
+<script>
+
+window.potenza_totale = 0
+
+$('.prodotto').on('click', function(){
+    var prodotto = $(this);
+    var potenza = prodotto.data('resa');
+    if(prodotto.hasClass('selezionato')) {
+        prodotto.removeClass('selezionato');
+        potenza_totale -= potenza;
+    } else {
+        prodotto.addClass('selezionato');
+        potenza_totale += potenza;
+    }
+    $('#potenza-totale').text(potenza_totale + ' KWp');
+
+});
+
+$('#provincia').on('change', function(){
+    var provincia = $('#provincia').find(":selected").text();
+    window.consumo_annuo_provincia = province[provincia];
+    $('#consumo-annuo-provincia').text(window.consumo_annuo_provincia + ' TWp')
+});
+
+$('#calcola').on('click', function(){
+    console.log(potenza_totale);
+    var persone = $('#persone').val();
+    var consumo_casa = (window.consumo_annuo_provincia * persone);
+    var indipendenza = (potenza_totale * 0.1) / consumo_casa;
+    $('#risultato').text('');
+    $('#risultato').append('<p>Consumo annuale della casa: <br><b>'+consumo_casa+' TWp</b>');
+    $('#risultato').append('<p>Indice di indipendenza energetica: <br><b>'+parseInt(indipendenza)+'%</b></p>');
+});
+
+province = {
+"Torino": 1133.6889082,
+"Vercelli": 994.17039408,
+"Novara": 1128.8682241,
+"Cuneo": 1067.4977961,
+"Asti": 1091.0655079,
+"Alessandria": 1095.0585435,
+"Biella": 1222.0843323,
+"Verbania": 1008.8397809,
+"Aosta": 1345.7026269,
+"Imperia": 1107.6501265,
+"Savona": 1063.7702455,
+"Genova": 1092.6037295,
+"La Spezia": 1038.665233,
+"Varese": 1206.0406484,
+"Como": 1147.0063159,
+"Sondrio": 1131.33263,
+"Milano": 1024.5924882,
+"Bergamo": 1255.007813,
+"Brescia": 1073.4756978,
+"Pavia": 1269.1489013,
+"Cremona": 1214.8434137,
+"Mantova": 1294.2242193,
+"Lecco": 1151.3394016,
+"Lodi": 1130.8973048,
+"Monza": 1201.3997778,
+"Bolzano": 1291.1410935,
+"Trento": 895.67797222,
+"Verona": 1056.9911812,
+"Vicenza": 1000.2866592,
+"Belluno": 1054.4408975,
+"Treviso": 1257.7690746,
+"Venezia": 1179.9914193,
+"Padova": 1277.1677152,
+"Rovigo": 1129.538069,
+"Udine": 1127.0489956,
+"Gorizia": 971.54053528,
+"Trieste": 1163.4766988,
+"Pordenone": 1156.3950195,
+"Piacenza": 1158.4418982,
+"Parma": 1086.8107008,
+"Reggio dell'Emilia": 1162.9093504,
+"Modena": 1082.8799449,
+"Bologna": 1263.2446081,
+"Ferrara": 1270.5148076,
+"Ravenna": 1264.399614,
+"Forlì": 1105.49992,
+"Rimini": 1151.2215877,
+"Massa": 1082.2147544,
+"Lucca": 1264.350028,
+"Pistoia": 1177.9849125,
+"Firenze": 1194.7694865,
+"Livorno": 1080.1921824,
+"Pisa": 1306.9142482,
+"Arezzo": 1079.2028231,
+"Siena": 1249.1916203,
+"Grosseto": 1122.6954096,
+"Prato": 1124.7992315,
+"Perugia": 1125.8229454,
+"Terni": 979.37260566,
+"Pesaro": 1112.4755107,
+"Ancona": 1013.0871562,
+"Macerata": 1056.1285043,
+"Ascoli Piceno": 1031.932498,
+"Fermo": 1048.7128211,
+"Viterbo": 1124.3725173,
+"Rieti": 1016.6931893,
+"Roma": 1448.9412331,
+"Latina": 1220.7320383,
+"Frosinone": 1054.1443074,
+"L'Aquila": 1026.2849714,
+"Teramo": 1035.241501,
+"Pescara": 1113.5970104,
+"Chieti": 1044.5867139,
+"Campobasso": 908.64494183,
+"Isernia": 954.27931548,
+"Caserta": 1116.6187701,
+"Benevento": 982.07016339,
+"Napoli": 1068.2794576,
+"Avellino": 953.29022729,
+"Salerno": 999.41222318,
+"Foggia": 969.12130458,
+"Bari": 1226.2249342,
+"Taranto": 1205.1894875,
+"Brindisi": 1049.7083861,
+"Lecce": 1223.6340957,
+"Andria": 941.13643845,
+"Barletta": 957.33227434,
+"Trani": 909.34694697,
+"Potenza": 928.97109818,
+"Matera": 953.61119469,
+"Cosenza": 994.26221684,
+"Catanzaro": 1078.2062494,
+"Reggio di Calabria": 1291.4288274,
+"Crotone": 1060.8744254,
+"Vibo Valentia": 1034.4463478,
+"Trapani": 1283.8031608,
+"Palermo": 1256.7105098,
+"Messina": 1166.4890564,
+"Agrigento": 1269.6068996,
+"Caltanissetta": 1129.3389123,
+"Enna": 1087.9101095,
+"Catania": 1315.0504446,
+"Ragusa": 1154.8088709,
+"Siracusa": 1242.9969468,
+"Sassari": 1345.2108326,
+"Nuoro": 1210.6275881,
+"Cagliari": 1593.1142863,
+"Oristano": 1315.5353996,
+"Olbia": 1604.0686999,
+"Tempio Pausania": 1232.8727146,
+"Lanusei": 1015.7356058,
+"Tortolì": 1168.0962869,
+"Sanluri": 1224.6825191,
+"Villacidro": 1026.1938479,
+"Carbonia": 1383.7085449,
+"Iglesias": 1285.4240974,
+}
+
+
+</script>
+
+
+{% endblock %}
